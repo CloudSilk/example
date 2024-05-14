@@ -1,5 +1,7 @@
 # 轻舟低代码平台DEMO
 
+[![Discord](https://dcbadge.vercel.app/api/server/ollama?style=flat&compact=true)](https://discord.gg/AXgZhNPv)
+
 ## 环境要求：
 
 nodejs>=18
@@ -26,6 +28,5 @@ SERVICE_MODE=ALL  go run main.go --ui ./web/dist --port 48080
 
 如果微信群二维码过期，请添加社区助手的微信，备注云梭。
 
-![微信群](/images/wechat.jpg)
-
-![社区助手](/images/assistant.jpg)
+<img src="./images/wechat.jpg" style="width: 30%; height: 30%;">
+<img src="./images/assistant.jpg" style="width: 30%; height: 30%;">
