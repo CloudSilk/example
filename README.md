@@ -1,6 +1,6 @@
 # 轻舟低代码平台DEMO
 
-[![Discord](https://dcbadge.vercel.app/api/server/ollama?style=flat&compact=true)](https://discord.gg/AXgZhNPv)
+[Discord](https://discord.gg/AXgZhNPv)
 
 ## 环境要求：
 
