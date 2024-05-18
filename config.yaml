@@ -1,7 +1,11 @@
-mysql: "root:123456@(127.0.0.1:3306)/SwiftEase?charset=utf8mb4&parseTime=True&loc=Local"
-sqlite: "./SwiftEase.s3db"
-dbType: "sqlite"
 debug: true
+dbConfigs:
+  mysql:
+    connectionStr: "root:123456@(127.0.0.1:3306)/SwiftEase?charset=utf8mb4&parseTime=True&loc=Local"
+    dbType: "mysql"
+  sqlite:
+    fileName: "./SwiftEase.s3db"
+    dbType: "sqlite"
 token:
   key: "guoxf"
   redisAddr: ""

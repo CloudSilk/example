@@ -1,5 +1,5 @@
 run:
-	SERVICE_MODE=ALL  go run main.go --ui ./web/dist --port 48080
+	SERVICE_MODE=ALL  go run main.go --ui ./web/dist --port 48089
 gen-doc:
 	swag init --parseDependency --parseInternal --parseDepth 1
 
