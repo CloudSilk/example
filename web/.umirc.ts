@@ -42,7 +42,7 @@ export default defineConfig({
     title: '炘智科技'
   },
   define: { 'process.env.WEB_BASE': process.env.WEB_BASE },
-  proxy: proxy['test'],
+  proxy: proxy['dev'],
   alias: {
   },
   routes: [
