@@ -9,12 +9,9 @@ import (
 	curdhttp "github.com/CloudSilk/curd/http"
 	curdmodel "github.com/CloudSilk/curd/model"
 	curdservice "github.com/CloudSilk/curd/service"
+	"github.com/CloudSilk/pkg/config"
 	"github.com/CloudSilk/pkg/constants"
-	"github.com/CloudSilk/pkg/db"
-	"github.com/CloudSilk/pkg/db/mysql"
-	"github.com/CloudSilk/pkg/db/sqlite"
 	"github.com/CloudSilk/pkg/utils"
-	ucconfig "github.com/CloudSilk/usercenter/config"
 	uchttp "github.com/CloudSilk/usercenter/http"
 	ucmodel "github.com/CloudSilk/usercenter/model"
 	"github.com/CloudSilk/usercenter/model/token"
@@ -30,29 +27,25 @@ func main() {
 
 }
 
-// E:\work\go\src\codeup.aliyun.com\atali\nooocode\SwiftEase\examples\complex
 func StartAll(webPath string, port int) {
-	err := ucconfig.InitFromFile("./config.yaml")
+	err := config.InitFromFile("./config.yaml")
 	if err != nil {
 		panic(err)
 	}
-
-	var dbClient db.DBClientInterface
-	if ucconfig.DefaultConfig.DBType == "sqlite" {
-		dbClient = sqlite.NewSqlite2("", "", ucconfig.DefaultConfig.Sqlite, "CompaAI", ucconfig.DefaultConfig.Debug)
-	} else {
-		dbClient = mysql.NewMysql(ucconfig.DefaultConfig.Mysql, ucconfig.DefaultConfig.Debug)
+	ok, dbClient := config.NewDB("sqlite")
+	if !ok {
+		panic("未配置数据库")
 	}
-	ucmodel.InitDB(dbClient, ucconfig.DefaultConfig.Debug)
-	curdmodel.InitDB(dbClient, ucconfig.DefaultConfig.Debug)
+	ucmodel.InitDB(dbClient, config.DefaultConfig.Debug)
+	curdmodel.InitDB(dbClient, config.DefaultConfig.Debug)
 	curdservice.Init()
 
-	token.InitTokenCache(ucconfig.DefaultConfig.Token.Key, ucconfig.DefaultConfig.Token.RedisAddr, ucconfig.DefaultConfig.Token.RedisName, ucconfig.DefaultConfig.Token.RedisPwd, ucconfig.DefaultConfig.Token.Expired)
-	constants.SetPlatformTenantID(ucconfig.DefaultConfig.PlatformTenantID)
-	constants.SetSuperAdminRoleID(ucconfig.DefaultConfig.SuperAdminRoleID)
-	constants.SetDefaultRoleID(ucconfig.DefaultConfig.DefaultRoleID)
-	constants.SetEnabelTenant(ucconfig.DefaultConfig.EnableTenant)
-	ucmodel.SetDefaultPwd(ucconfig.DefaultConfig.DefaultPwd)
+	token.InitTokenCache(config.DefaultConfig.Token.Key, config.DefaultConfig.Token.RedisAddr, config.DefaultConfig.Token.RedisName, config.DefaultConfig.Token.RedisPwd, config.DefaultConfig.Token.Expired)
+	constants.SetPlatformTenantID(config.DefaultConfig.PlatformTenantID)
+	constants.SetSuperAdminRoleID(config.DefaultConfig.SuperAdminRoleID)
+	constants.SetDefaultRoleID(config.DefaultConfig.DefaultRoleID)
+	constants.SetEnabelTenant(config.DefaultConfig.EnableTenant)
+	ucmodel.SetDefaultPwd(config.DefaultConfig.DefaultPwd)
 
 	gen.LoadCache()
 

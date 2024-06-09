@@ -4,10 +4,16 @@ go 1.22
 
 toolchain go1.22.2
 
+// replace (
+// 	github.com/CloudSilk/curd => ../curd
+// 	github.com/CloudSilk/pkg => ../pkg
+// 	github.com/CloudSilk/usercenter => ../usercenter
+// )
+
 require (
 	dubbo.apache.org/dubbo-go/v3 v3.0.5
 	github.com/CloudSilk/curd v1.0.0
-	github.com/CloudSilk/pkg v1.0.0
+	github.com/CloudSilk/pkg v1.0.1
 	github.com/CloudSilk/usercenter v1.0.1
 	github.com/gin-gonic/gin v1.9.1
 )
